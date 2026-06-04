@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#04070a">
+<meta name="description" content="Ananya Dwivedi — Security Researcher · Web Application Penetration Testing">
 <title>ANANYA DWIVEDI // Security Researcher</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,7 +26,8 @@
   --syne:'Syne',sans-serif;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+html,body{max-width:100%;overflow-x:hidden}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{
   background:var(--bg);
   color:var(--txt);
@@ -32,8 +35,11 @@ body{
   overflow-x:hidden;
   cursor:none;
   line-height:1.6;
+  overflow-wrap:break-word;
   -webkit-font-smoothing:antialiased;
 }
+img,canvas,svg{max-width:100%}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body.no-scroll{overflow:hidden;height:100vh}
 ::selection{background:var(--cyan);color:#02080a}
 
@@ -118,14 +124,15 @@ section{position:relative;z-index:10;padding:clamp(70px,11vh,130px) 0}
 .reveal.d4{transition-delay:.32s}.reveal.d5{transition-delay:.4s}
 
 /* ===== HERO ===== */
-#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative}
+#hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;position:relative;padding-top:80px}
 .hero-status{font-size:11.5px;letter-spacing:3px;color:var(--green);margin-bottom:24px;
   display:flex;align-items:center;gap:10px}
 .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green);
   animation:pulse 1.6s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-.hero-name{font-family:var(--syne);font-weight:800;font-size:clamp(42px,11vw,140px);
-  line-height:.92;letter-spacing:-3px;color:#f2feff;position:relative}
+.hero-name{font-family:var(--syne);font-weight:800;font-size:clamp(40px,11vw,140px);
+  line-height:.92;letter-spacing:-3px;color:#f2feff;position:relative;
+  max-width:100%;overflow-wrap:break-word;word-break:break-word}
 .hero-name .l2{color:var(--cyan);text-shadow:0 0 30px rgba(0,240,255,.4)}
 .glitch{position:relative}
 .glitch:before,.glitch:after{content:attr(data-t);position:absolute;left:0;top:0;width:100%;
@@ -264,6 +271,7 @@ section{position:relative;z-index:10;padding:clamp(70px,11vh,130px) 0}
 .contact-big span{color:var(--cyan)}
 .contact-links{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-top:24px}
 .clink{font-size:13px;letter-spacing:1px;padding:14px 24px;border:1px solid var(--line);
+  max-width:100%;overflow-wrap:anywhere;
   color:var(--txt);text-decoration:none;transition:.3s;background:rgba(7,13,18,.5)}
 .clink:hover{border-color:var(--cyan);color:var(--cyan);box-shadow:0 0 24px rgba(0,240,255,.2);transform:translateY(-3px)}
 footer{text-align:center;padding:40px 20px;font-size:11px;color:var(--dim);letter-spacing:1px;
@@ -339,7 +347,8 @@ footer b{color:var(--green)}
   .about-text p{font-size:14px}
   .t-body{height:320px;font-size:12px;padding:14px}
   .t-input-line{padding:10px 14px}
-  #tInput,.t-input-line .pmt{font-size:12px}
+  .t-input-line .pmt{font-size:11px}
+  #tInput{font-size:16px}
   .contact-links{flex-direction:column;align-items:stretch}
   .clink{text-align:center}
   .timeline{margin-left:6px}
@@ -350,11 +359,19 @@ footer b{color:var(--green)}
 
 /* tiny phones */
 @media(max-width:380px){
-  .hero-name{font-size:42px}
+  .hero-name{font-size:38px;letter-spacing:-1px}
   .sec-title{font-size:24px}
   .t-body{height:280px}
   .metric .n{font-size:28px}
   .logo{font-size:16px}
+  .wrap{padding:0 16px}
+  .hero-role{font-size:14px}
+}
+
+/* foldables / ultra-narrow */
+@media(max-width:300px){
+  .hero-name{font-size:30px}
+  .nav-links.open{min-width:140px}
 }
 
 /* landscape phones — shrink hero so it fits */
@@ -685,6 +702,7 @@ footer b{color:var(--green)}
       <a href="mailto:ananyadwivedi115@gmail.com" class="clink" data-hot>✉ ananyadwivedi115@gmail.com</a>
       <a href="tel:9770618286" class="clink" data-hot>☎ 9770618286</a>
       <a href="https://www.linkedin.com/in/ananya-dwivedi-92a875316/" target="_blank" rel="noopener" class="clink" data-hot>in/ ananya-dwivedi</a>
+      <a href="https://tryhackme.com/p/ananyadwivedi115" target="_blank" rel="noopener" class="clink" data-hot>⛛ tryhackme/ananyadwivedi115</a>
     </div>
   </div>
 </section>
@@ -781,8 +799,10 @@ const soft=['Analytical Thinking','Attention to Detail','Clear Technical Communi
 function fill(id,arr,cls){const w=document.getElementById(id);arr.forEach(s=>{const c=document.createElement('div');c.className='chip'+(cls||'');c.textContent=s;c.setAttribute('data-hot','');w.appendChild(c);});}
 fill('coreSkills',core,'');fill('toolSkills',tools,' t');fill('softSkills',soft,'');
 
-/* chip 3D tilt */
-function tiltify(){document.querySelectorAll('.chip,.ho-card,.cert,.panel').forEach(el=>{
+/* chip 3D tilt — only on real hover/fine-pointer devices */
+function tiltify(){
+  if(!matchMedia('(hover:hover) and (pointer:fine)').matches)return;
+  document.querySelectorAll('.chip,.ho-card,.cert,.panel').forEach(el=>{
   el.addEventListener('mousemove',e=>{const r=el.getBoundingClientRect();
     const px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;
     el.style.transform=`perspective(600px) rotateY(${px*8}deg) rotateX(${-py*8}deg) translateY(-3px)`;});
@@ -830,6 +850,7 @@ const CMDS={
   <span class="v">labs</span>       training &amp; conferences
   <span class="v">contact</span>    how to reach her
   <span class="v">social</span>     online links
+  <span class="v">thm</span>        TryHackMe profile
   <span class="v">ls</span>         list profile files
   <span class="v">banner</span>     show banner
   <span class="v">date</span>       current date
@@ -859,8 +880,11 @@ Self-practice: DVWA · bWAPP
 Conferences (2025): NullCon Goa · Seasides Goa`,
   contact:()=>`<span class="k">email</span>  <a href="mailto:ananyadwivedi115@gmail.com">ananyadwivedi115@gmail.com</a>
 <span class="k">phone</span>  <a href="tel:9770618286">9770618286</a>
-<span class="k">in</span>     <a href="https://www.linkedin.com/in/ananya-dwivedi-92a875316/" target="_blank" rel="noopener">linkedin.com/in/ananya-dwivedi</a>`,
+<span class="k">in</span>     <a href="https://www.linkedin.com/in/ananya-dwivedi-92a875316/" target="_blank" rel="noopener">linkedin.com/in/ananya-dwivedi</a>
+<span class="k">thm</span>    <a href="https://tryhackme.com/p/ananyadwivedi115" target="_blank" rel="noopener">tryhackme.com/p/ananyadwivedi115</a>`,
   social:()=>CMDS.contact(),
+  thm:()=>`<span class="g">TryHackMe</span> — hands-on hacking labs &amp; rooms
+profile: <a href="https://tryhackme.com/p/ananyadwivedi115" target="_blank" rel="noopener">tryhackme.com/p/ananyadwivedi115</a>`,
   ls:()=>`<span class="v">profile.json</span>   <span class="v">skills.txt</span>   <span class="v">certs.log</span>
 <span class="v">education.md</span>   <span class="v">contact.vcf</span>  <span class="v">README.md</span>`,
   date:()=>new Date().toString(),
@@ -995,8 +1019,11 @@ addEventListener('scroll',()=>{
     if(el&&el.getBoundingClientRect().top<innerHeight*.4)cur=id;});
   navMap.forEach(a=>a.classList.toggle('active',a.getAttribute('href').slice(1)===cur));
 },{passive:true});
+let renderPaused=false;
+document.addEventListener('visibilitychange',()=>{renderPaused=document.hidden;});
 function animate(){
   requestAnimationFrame(animate);
+  if(renderPaused||!renderer)return;
   const t=clock.getElapsedTime();
   coreWire.rotation.y=t*.18;coreWire.rotation.x=t*.1;
   coreInner.rotation.y=-t*.3;coreInner.rotation.z=t*.12;
@@ -1027,7 +1054,12 @@ function animate(){
 
 /* init */
 window.addEventListener('load',()=>{
-  initThree();hotify();tiltify();
+  try{ initThree(); }
+  catch(err){
+    console.warn('3D background disabled:',err);
+    const c=document.getElementById('bg-canvas'); if(c)c.style.display='none';
+  }
+  hotify(); tiltify();
 });
 </script>
 </body>
